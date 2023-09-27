@@ -52,6 +52,14 @@ function LinkedList() {
     return at(index - 1, node.nextNode);
   }
 
+  function pop(node = this.list) {
+    if (node.nextNode.nextNode === null) {
+      node.nextNode = null;
+      return;
+    }
+    return pop(node.nextNode)
+  }
+
   return {
     list,
     append,
@@ -60,6 +68,7 @@ function LinkedList() {
     head,
     tail,
     at,
+    pop,
   };
 }
 
@@ -79,5 +88,5 @@ linked.prepend("Second");
 linked.prepend("Third");
 linked.prepend("Fourth");
 linked.append("Zero");
-console.log(linked.list)
+console.log(linked.list);
 
