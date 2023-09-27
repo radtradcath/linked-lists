@@ -83,6 +83,14 @@ function LinkedList() {
     return find(value, node.nextNode, index + 1)
   }
 
+  function listToString(node = this.list) {
+    if (node.nextNode === null) {
+      return 'null';
+    }
+
+    return `${node.value} -> ` + listToString(node.nextNode);
+  }
+  
   return {
     list,
     append,
@@ -94,6 +102,7 @@ function LinkedList() {
     pop,
     contains,
     find,
+    listToString,
   };
 }
 
@@ -117,3 +126,4 @@ console.log(linked.list);
 console.log(linked.contains("Second"));
 console.log(linked.find('First'))
 console.log(linked.find('I dont exist'))
+console.log(linked.listToString());
