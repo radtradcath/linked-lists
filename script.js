@@ -101,6 +101,13 @@ function LinkedList() {
     nodeBeforeIndex.nextNode = newNode;
   }
 
+  function removeAt(index) {
+    let nodeBeforeIndex = this.at(index - 1);
+    let nodeAfterIndex = this.at(index + 1);
+
+    nodeBeforeIndex.nextNode = nodeAfterIndex;
+  }
+
   return {
     list,
     append,
@@ -114,6 +121,7 @@ function LinkedList() {
     find,
     listToString,
     insertAt,
+    removeAt,
   };
 }
 
@@ -137,5 +145,7 @@ console.log(linked.list);
 console.log(linked.contains("Second"));
 console.log(linked.find("First"));
 console.log(linked.find("I dont exist"));
-linked.insertAt('Inserted', 2)
+linked.insertAt("Inserted", 2);
+console.log(linked.listToString());
+linked.removeAt(2);
 console.log(linked.listToString());
