@@ -42,7 +42,7 @@ function LinkedList() {
   function at(index, node = this.list) {
     let counter = 0;
     if (node === null) {
-      return 'end';
+      return "end";
     }
 
     if (counter === index) {
@@ -57,7 +57,7 @@ function LinkedList() {
       node.nextNode = null;
       return;
     }
-    return pop(node.nextNode)
+    return pop(node.nextNode);
   }
 
   function contains(value, node = this.list) {
@@ -69,8 +69,18 @@ function LinkedList() {
       return false;
     }
 
-    return contains(value, node.nextNode)
+    return contains(value, node.nextNode);
+  }
 
+  function find(value, node = this.list, index = 0) {
+    if (node.value === value) {
+      return index;
+    }
+    if (node.nextNode === null) {
+      return null;
+    }
+
+    return find(value, node.nextNode, index + 1)
   }
 
   return {
@@ -83,6 +93,7 @@ function LinkedList() {
     at,
     pop,
     contains,
+    find,
   };
 }
 
@@ -103,5 +114,6 @@ linked.prepend("Third");
 linked.prepend("Fourth");
 linked.append("Zero");
 console.log(linked.list);
-console.log(linked.contains('Second'));
-
+console.log(linked.contains("Second"));
+console.log(linked.find('First'))
+console.log(linked.find('I dont exist'))
