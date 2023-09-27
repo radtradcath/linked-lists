@@ -60,6 +60,19 @@ function LinkedList() {
     return pop(node.nextNode)
   }
 
+  function contains(value, node = this.list) {
+    if (node.value === value) {
+      return true;
+    }
+
+    if (node.nextNode === null) {
+      return false;
+    }
+
+    return contains(value, node.nextNode)
+
+  }
+
   return {
     list,
     append,
@@ -69,6 +82,7 @@ function LinkedList() {
     tail,
     at,
     pop,
+    contains,
   };
 }
 
@@ -89,4 +103,5 @@ linked.prepend("Third");
 linked.prepend("Fourth");
 linked.append("Zero");
 console.log(linked.list);
+console.log(linked.contains('Second'));
 
