@@ -80,17 +80,27 @@ function LinkedList() {
       return null;
     }
 
-    return find(value, node.nextNode, index + 1)
+    return find(value, node.nextNode, index + 1);
   }
 
   function listToString(node = this.list) {
     if (node.nextNode === null) {
-      return 'null';
+      return "null";
     }
 
     return `${node.value} -> ` + listToString(node.nextNode);
   }
-  
+
+  function insertAt(value, index) {
+    let newNode = NodeClass();
+    newNode.value = value;
+
+    let nodeAtIndex = this.at(index);
+    let nodeBeforeIndex = this.at(index - 1);
+    newNode.nextNode = nodeAtIndex;
+    nodeBeforeIndex.nextNode = newNode;
+  }
+
   return {
     list,
     append,
@@ -103,6 +113,7 @@ function LinkedList() {
     contains,
     find,
     listToString,
+    insertAt,
   };
 }
 
@@ -124,6 +135,7 @@ linked.prepend("Fourth");
 linked.append("Zero");
 console.log(linked.list);
 console.log(linked.contains("Second"));
-console.log(linked.find('First'))
-console.log(linked.find('I dont exist'))
+console.log(linked.find("First"));
+console.log(linked.find("I dont exist"));
+linked.insertAt('Inserted', 2)
 console.log(linked.listToString());
